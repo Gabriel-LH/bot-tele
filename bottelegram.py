@@ -17,11 +17,11 @@ TOKEN = os.getenv("BOT_TOKEN")
 
 async def sysinfo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     info = f"""
-📟 *Sistema (Render):*
+📟 <b>Sistema (Render):</b>
 Python: {platform.python_version()}
 Arquitectura: {platform.machine()}
     """
-    await update.message.reply_text(info, parse_mode="Markdown")
+    await update.message.reply_text(info, parse_mode="HTML") # Cambiar a HTML
 
 async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(context.args) == 0:
