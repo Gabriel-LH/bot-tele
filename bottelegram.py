@@ -4,15 +4,10 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import platform
 import subprocess
 
-# --- Configuración Específica para Render/Webhook ---
-# Render asigna el puerto a través de una variable de entorno, generalmente 'PORT'.
-# Si no la encuentra, usa 8080 por defecto.
+
 PORT = int(os.environ.get('PORT', '8080'))
 
-# La URL de tu servicio de Render (necesaria para decirle a Telegram dónde llamar)
-# Render la asigna en la variable 'RENDER_EXTERNAL_HOSTNAME'
-# Si no usas un dominio custom, el path para recibir las llamadas (el 'endpoint')
-# puede ser simplemente una cadena secreta (ej. TOKEN)
+
 WEBHOOK_URL = os.environ.get('RENDER_EXTERNAL_HOSTNAME') 
 WEBHOOK_PATH = os.environ.get('TOKEN', '/secretpath') # Usaremos el token o un path secreto para el endpoint
 
@@ -60,9 +55,6 @@ def main():
     app.add_handler(CommandHandler("help", help_cmd))
 
     print(f"🤖 Configurando Webhook en: https://{WEBHOOK_URL}{WEBHOOK_PATH}")
-
-    # 1. Configurar la URL del webhook en Telegram
-    app.set_webhook(url=f'https://{WEBHOOK_URL}{WEBHOOK_PATH}')
 
     # 2. Iniciar el servidor web para escuchar peticiones de Telegram
     app.run_webhook(
