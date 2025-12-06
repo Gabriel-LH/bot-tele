@@ -1,1 +1,1 @@
-worker: python bottelegram.py
+web: python bottelegram.py
