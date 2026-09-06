@@ -36,7 +36,7 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
 📜 *Comandos disponibles:*
 /sysinfo - Info del sistema
 /ping host - Prueba de ping
-/help - Ayuda
+/help Me / Ayudame
 """
     await update.message.reply_text(texto, parse_mode="Markdown")
 
